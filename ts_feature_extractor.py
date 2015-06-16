@@ -23,6 +23,9 @@ class FeatureExtractor(object):
         valid_range = range(n_burn_in, temperatures_xray['time'].shape[0] - n_lookahead)
         time_steps, lats, lons = temperatures_xray['tas'].values.shape
         X = temperatures_xray['tas'].values.reshape((time_steps,lats*lons))
-        X = X[valid_range,:]
+        
+        Y = X[valid_range,:]
+        for i in range(-1, -12, -1):
+            X = np.hstack((X, Y[[v-i for v in valid_range],:]))
                 
         return X
