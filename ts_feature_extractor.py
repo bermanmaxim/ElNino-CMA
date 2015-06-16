@@ -25,7 +25,7 @@ class FeatureExtractor(object):
         X = temperatures_xray['tas'].values.reshape((time_steps,lats*lons))
         
         Y = X[valid_range,:]
-        for i in range(-1, -12, -1):
-            X = np.hstack((X, Y[[v-i for v in valid_range],:]))
+        for i in range(1, 12):
+            Y = np.hstack((Y, X[[v-i for v in valid_range],:]))
                 
         return X
