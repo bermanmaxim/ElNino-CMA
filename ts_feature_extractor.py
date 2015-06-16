@@ -9,7 +9,6 @@ en_lon_right = 360 - 120
 def get_enso_mean(tas):
     return tas.loc[:, en_lat_bottom:en_lat_top, en_lon_left:en_lon_right].mean(dim=('lat','lon'))
 
-
 class FeatureExtractor(object):
 
     def __init__(self):
